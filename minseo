@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>군포 당일치기 – 6시 내고향 여행</title>
+
+  <!-- 감성 한글 폰트 (원하면 다른 폰트로 변경 가능) -->
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-paper: #f8f1e6;
+      --main-brown: #9b5a3c;
+      --dark-brown: #4b2e22;
+      --soft-green: #7c9a6d;
+      --soft-blue: #6a90a8;
+      --accent-pink: #e69a9a;
+      --card-bg: #fffdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Gowun Dodum", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background-color: var(--bg-paper);
+      color: var(--dark-brown);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    header {
+      position: relative;
+      margin-bottom: 2.5rem;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(
+        135deg,
+        #f7d9a8 0%,
+        #f8f1e6 40%,
+        #fce4cf 100%
+      );
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1200");
+      opacity: 0.13;
+      mix-blend-mode: multiply;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero {
+      position: relative;
+      padding: 2.5rem 2.2rem 2.6rem;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-size: 0.85rem;
+      color: var(--main-brown);
+      letter-spacing: 0.06em;
+    }
+
+    .hero-label span.icon {
+      font-size: 1.1rem;
+    }
+
+    .hero-title {
+      margin: 1.1rem 0 0.4rem;
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 2.8rem;
+      color: var(--dark-brown);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-family: "Nanum Myeongjo", serif;
+      font-size: 1.05rem;
+    }
+
+    .hero-meta {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+    }
+
+    .meta-pill {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px dashed rgba(139, 89, 60, 0.35);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    section {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.6rem 1.5rem 1.7rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0.6rem 0.7rem auto auto;
+      border-radius: 12px;
+      border: 1px dashed rgba(0, 0, 0, 0.03);
+      pointer-events: none;
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      font-family: "Nanum Myeongjo", serif;
+      font-size: 1.3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--main-brown);
+    }
+
+    section h2 span.icon {
+      font-size: 1.1rem;
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      color: rgba(75, 46, 34, 0.9);
+    }
+
+    /* 타임라인 */
+
+    .timeline {
+      list-style: none;
+      margin: 1.1rem 0 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        rgba(155, 90, 60, 0.7),
+        rgba(124, 154, 109, 0.2)
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 3.1rem;
+      padding-bottom: 1.2rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 0.15rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--card-bg);
+      border: 2px solid var(--main-brown);
+      box-shadow: 0 0 0 3px rgba(248, 241, 230, 0.95);
+    }
+
+    .timeline-time {
+      font-size: 0.8rem;
+      color: rgba(75, 46, 34, 0.8);
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: rgba(75, 46, 34, 0.9);
+    }
+
+    /* 카드 레이아웃 */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.8rem;
+    }
+
+    .card {
+      background-color: #fffdf9;
+      border-radius: 14px;
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid rgba(155, 90, 60, 0.14);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .card-tag {
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background-color: rgba(124, 154, 109, 0.12);
+      color: var(--soft-green);
+      border: 1px solid rgba(124, 154, 109, 0.3);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .card-note {
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+      color: rgba(75, 46, 34, 0.8);
+      font-style: italic;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(155, 90, 60, 0.18);
+      background-color: rgba(248, 241, 230, 0.9);
+    }
+
+    /* 교통 정보 */
+
+    .bus-line {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: var(--soft-green);
+    }
+
+    .bus-line.orange {
+      background-color: var(--main-brown);
+    }
+
+    .route {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .arrow {
+      opacity: 0.7;
+    }
+
+    .stop {
+      padding: 0.2rem 0.45rem;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    /* 계절/축제 */
+
+    .season-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(155, 90, 60, 0.2);
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .badge.spring {
+      border-color: rgba(230, 154, 154, 0.6);
+      background-color: rgba(230, 154, 154, 0.12);
+    }
+
+    .badge.autumn {
+      border-color: rgba(155, 90, 60, 0.6);
+      background-color: rgba(247, 217, 168, 0.18);
+    }
+
+    blockquote {
+      margin: 0.9rem 0 0;
+      padding-left: 0.9rem;
+      border-left: 3px solid rgba(155, 90, 60, 0.45);
+      font-family: "Nanum Myeongjo", serif;
+      font-size: 0.94rem;
+      color: rgba(75, 46, 34, 0.96);
+    }
+
+    /* 푸터 */
+
+    footer {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed rgba(75, 46, 34, 0.3);
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(75, 46, 34, 0.8);
+    }
+
+    .footer-quote {
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* 반응형 */
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 1.8rem 1.5rem 2.1rem;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      section {
+        padding: 1.3rem 1.1rem 1.4rem;
+      }
+
+      section::before {
+        inset: 0.5rem 0.5rem auto auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="hero">
+        <div class="hero-label">
+          <span class="icon">📺</span>
+          <span>6시 내고향 감성 당일치기</span>
+        </div>
+        <h1 class="hero-title">군포에서 보내는 포근한 하루</h1>
+
+        <p class="hero-subtitle">
+          초막골생태공원에서 반월호수, 군포수리길까지.  
+          <!-- TODO: 여행의 전체 콘셉트를 한 줄로 더 추가하고 싶다면 이 문장 아래에 <br> 뒤로 이어서 써주세요. -->
+        </p>
+
+        <div class="hero-meta">
+          <span class="meta-pill">
+            <!-- TODO: 실제 여행 날짜를 적어주세요. 예: 2025년 4월 어느 봄날 -->
+            여행일자: 날짜를 적어주세요
+          </span>
+          <span class="meta-pill">코스: 초막골생태공원 → 반월호수 → 군포수리길3코스(철쭉동산)</span>
+          <span class="meta-pill">당일치기 · 대중교통 이용</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- 여행 개요 -->
+      <section id="overview">
+        <h2><span class="icon">🌾</span>여행 한눈에 보기</h2>
+        <p class="section-intro">
+          <!-- TODO: 여기에 이 여행을 떠올리게 된 계기, ‘6시 내고향’ 같은 느낌을 간단히 적어주세요. -->
+          군포에서 나고 자란 사람이 천천히 걸으며 고향을 다시 바라보는 하루를 그려본다.
+          아침엔 동네 카페에서 든든히 시작하고, 점심과 저녁은 단골 같은 식당에서 소박하지만
+          맛있는 한 끼를 채운다.
+        </p>
+
+        <ul class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-time">08:30</div>
+            <div class="timeline-title">아침 – 카페리버티 더 테이블 산본점</div>
+            <div class="timeline-desc">
+              가볍게 브런치와 커피로 몸을 깨우고, 오늘 코스를 천천히 정리한다.
+              <!-- TODO: 본인이 먹고 싶은 메뉴나 분위기 한 줄을 구체적으로 적어보세요. -->
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-time">10:00</div>
+            <div class="timeline-title">초막골생태공원 산책</div>
+            <div class="timeline-desc">
+              숲길을 따라 걸으며 계절을 느끼고, 중간중간 쉼터에서 여유롭게 쉬어간다.
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-time">12:30</div>
+            <div class="timeline-title">점심 – 통큰숯뚜껑닭불 / 순이네만두촌</div>
+            <div class="timeline-desc">
+              푸짐한 한 끼로 든든하게 채우고, 동네 맛집의 정겨운 분위기를 느껴본다.
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-time">14:00</div>
+            <div class="timeline-title">반월호수 & 군포수리길3코스(철쭉동산)</div>
+            <div class="timeline-desc">
+              호숫가를 따라 천천히 걷다가 군포수리길 철쭉동산까지 이어지는 길을 따라간다.
+              <!-- TODO: 걷고 싶은 방향이나 중간에 들를 포인트가 있다면 적어주세요. -->
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-time">16:30</div>
+            <div class="timeline-title">카페 – 온도</div>
+            <div class="timeline-desc">
+              따뜻한 커피 한 잔과 함께 오늘 찍은 사진들을 정리하며 잠시 쉬어간다.
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-time">18:30</div>
+            <div class="timeline-title">저녁 – 오피스</div>
+            <div class="timeline-desc">
+              하루를 마무리하는 소박한 저녁. 익숙한 골목 풍경을 다시 한 번 눈에 담는다.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 관광지 상세 -->
+      <section id="places">
+        <h2><span class="icon">🏡</span>관광지 소개</h2>
+        <p class="section-intro">
+          익숙해서 잘 몰랐던 군포의 풍경을, 오늘은 여행자의 눈으로 다시 바라본다.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">초막골생태공원</div>
+              <span class="card-tag">1코스 시작</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 초막골생태공원에 대한 개인적인 기억이나 느낌을 2~3문장으로 적어주세요. -->
+              나무 냄새와 솔바람이 먼저 반겨주는 숲길. 계절마다 다른 색깔로 변하는
+              군포의 뒷산 같은 공간이다. 천천히 걸으며 하루의 리듬을 맞추기 좋다.
+              <p class="card-note">추천 활동: 숲길 산책, 전망 좋은 벤치에서 간단한 간식.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">반월호수</div>
+              <span class="card-tag">호숫가 산책</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 반월호수를 떠올리면 생각나는 풍경이나 분위기를 적어주세요. -->
+              바람에 살짝 일렁이는 호수와 주변 산이 만들어내는 풍경이 고요하다.
+              산책로나 자전거 도로를 따라 걷다 보면, 도시에서 멀리 떠나온 느낌이 든다.
+              <p class="card-note">추천 활동: 호숫가 사진 찍기, 벤치에 앉아 멍 때리기.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">군포수리길3코스 (철쭉동산)</div>
+              <span class="card-tag">철쭉 명소</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 특히 봄철 철쭉 시즌에 대한 느낌을 적어주세요. -->
+              철쭉이 만개하는 계절이면 분홍빛으로 물드는 길. 군포 사람들에게는 익숙한
+              풍경이지만, 다시 보면 작은 축제 같은 장면이 펼쳐진다.
+              <p class="card-note">추천 활동: 철쭉꽃 사진, 천천히 걷기 좋은 완만한 산책 코스.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 식당 & 카페 -->
+      <section id="food">
+        <h2><span class="icon">🍚</span>식당 & 카페</h2>
+        <p class="section-intro">
+          군포에서만 느낄 수 있는, 동네 사람들 손맛과 카페 분위기를 담았다.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">카페리버티 더 테이블 산본점</div>
+              <span class="card-tag">아침</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 이 카페에서 먹고 싶은 메뉴나 느낌을 적어주세요. -->
+              조용한 음악과 따뜻한 햇살이 들어오는 브런치 카페. 하루를 정리하고
+              계획하기에 딱 좋은 공간이다.
+              <div class="pill-row">
+                <span class="pill">브런치</span>
+                <span class="pill">감성 카페</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">통큰숯뚜껑닭불</div>
+              <span class="card-tag">점심 후보 1</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 같이 가고 싶은 사람이나 주문하고 싶은 메뉴를 적어주세요. -->
+              숯불 향이 진하게 스며든 닭고기를 마음껏 즐길 수 있는 곳.
+              친구들과 여유 있게 고기를 구워 먹으며 수다 떨기 좋은 분위기다.
+              <div class="pill-row">
+                <span class="pill">숯불구이</span>
+                <span class="pill">푸짐한 한 끼</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">순이네만두촌</div>
+              <span class="card-tag">점심 후보 2</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 만두나 분식 좋아한다면, 그 이유를 한 줄 적어주세요. -->
+              집에서 만든 것 같은 따끈한 만두와 칼국수로 속을 따뜻하게 채우기 좋은 곳.
+              <div class="pill-row">
+                <span class="pill">만두 맛집</span>
+                <span class="pill">편안한 한 끼</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">온도</div>
+              <span class="card-tag">카페</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 카페 ‘온도’에서 느끼고 싶은 분위기를 적어주세요. -->
+              이름처럼 적당한 온도의 조명과 음악이 흐르는 곳. 오후의 피로를 내려놓고,
+              오늘의 여행을 정리해 보기 좋다.
+              <div class="pill-row">
+                <span class="pill">디저트</span>
+                <span class="pill">여유로운 오후</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">오피스</div>
+              <span class="card-tag">저녁</span>
+            </div>
+            <div class="card-body">
+              <!-- TODO: 저녁에 먹고 싶은 메뉴, 분위기를 적어주세요. -->
+              적당히 북적거리지만 편안한 분위기의 저녁 식사 장소. 하루를 마무리하며
+              오늘의 하이라이트를 정리해 보기 좋다.
+              <div class="pill-row">
+                <span class="pill">저녁 식사</span>
+                <span class="pill">하루 마무리</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 교통 정보 -->
+      <section id="transport">
+        <h2><span class="icon">🚌</span>교통 정보</h2>
+        <p class="section-intro">
+          대중교통으로도 충분히 즐길 수 있는 코스. 복잡하지 않게, 버스만 타고 천천히 이동한다.
+        </p>
+
+        <h3 style="font-size:0.95rem; margin-top:0.6rem;">① 초막골생태공원 → 반월호수</h3>
+        <div class="route">
+          <span class="stop">초막골생태공원 인근 정류장</span>
+          <span class="arrow">→</span>
+          <span class="bus-line orange">3-1</span>
+          <span class="stop">수리동행정복지센터 승차</span>
+          <span class="arrow">→</span>
+          <span class="bus-line">6-1</span>
+          <span class="stop">충무주공아파트 승차</span>
+          <span class="arrow">→</span>
+          <span class="stop">둔대·반월호수 하차</span>
+        </div>
+
+        <!-- TODO: 다른 이동 경로(집 → 초막골, 반월호수 → 집 등)를 추가하고 싶으면 아래 형식으로 <div class="route">를 복사해서 사용하세요. -->
+
+        <p style="font-size:0.82rem; margin-top:0.9rem; color:rgba(75,46,34,0.8);">
+          * 실제 버스 시간과 노선은 여행 전날, 포털·지도 앱으로 다시 한 번 확인하세요.
+        </p>
+      </section>
+
+      <!-- 축제 & 추천 시기 -->
+      <section id="season">
+        <h2><span class="icon">🎎</span>축제 & 추천 시기</h2>
+        <p class="section-intro">
+          군포는 특히 철쭉이 피는 계절에 가장 ‘6시 내고향’ 느낌이 진하게 나는 도시다.
+        </p>
+
+        <div class="season-badges">
+          <span class="badge spring">봄 (4~5월) – 철쭉 시즌</span>
+          <span class="badge autumn">가을 (10월 전후) – 단풍 산책</span>
+        </div>
+
+        <blockquote>
+          <!-- TODO: 이 코스를 가장 가고 싶은 계절과 그 이유를 적어주세요. -->
+          철쭉이 산을 덮는 봄, 분홍빛 수리길을 걸으며 “여기가 바로 내 고향이구나” 하는
+          생각이 절로 난다.
+        </blockquote>
+
+        <p style="margin-top:0.8rem; font-size:0.9rem;">
+          <!-- TODO: 실제로 가 보고 싶은 군포의 축제 이름과 간단한 설명을 적어주세요. 예: 군포 철쭉축제, 군포시 문화행사 등 -->
+          예를 들어, 매년 봄에 열리는 철쭉 관련 축제가 있다면 이 코스를 축제와 묶어서
+          하루를 채워도 좋다. 낮에는 철쭉 동산을 걷고, 저녁에는 도심의 작은 공연이나
+          장터를 둘러보는 식으로 여행을 완성할 수 있다.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-quote">
+        <!-- TODO: 오늘의 여행을 한 문장으로 요약하는 문장을 적어주세요. -->
+        “멀리 떠나지 않아도, 고향은 가장 따뜻한 여행지가 된다.”
+      </div>
+      <div>
+        <!-- TODO: 본인의 이름이나 닉네임을 넣고 싶다면 여기에 적어주세요. -->
+        written by 나의 군포 하루
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
