@@ -1,0 +1,420 @@
+/* =========================================
+   style.css
+   군포 '6시 내고향' 당일치기 웹페이지 스타일
+   - 색상 / 여백 / 크기 바꾸고 싶을 때 아래 주석 참고해서 수정하세요!
+   ========================================= */
+
+/* -------------------------------
+   1. 전체 색상 팔레트(변수 모음)
+   :root 안에 있는 색만 바꿔도 분위기를 쉽게 변경 가능
+   ------------------------------- */
+:root {
+  /* 배경 그라데이션 색 (페이지 전체 느낌) */
+  --bg-top: #fbe2b7;       /* 화면 위쪽 근처 색 */
+  --bg-bottom: #f6f0e4;    /* 화면 아래쪽 근처 색 */
+
+  /* 메인 카드 배경 (짙은 갈색 계열) */
+  --panel-bg: rgba(34, 22, 9, 0.96);
+  --panel-light: rgba(53, 36, 18, 0.96);
+
+  /* 포인트 컬러 (버튼 느낌, 강조 색) */
+  --accent: #f3ae4e;       /* 진한 오렌지/노랑 */
+  --accent-soft: #f7d59b;  /* 연한 오렌지/노랑 */
+
+  /* 텍스트 색상(최상단/부제목) */
+  --text-main: #fdf5e8;    /* 기본 글자색 (따뜻한 흰색) */
+  --text-muted: #c9b69b;   /* 보조 텍스트 색 (연한 갈색) */
+}
+
+/* -------------------------------
+   2. 공통 설정
+   ------------------------------- */
+* {
+  box-sizing: border-box;  /* 패딩/보더 포함해서 크기 계산 */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Gowun Dodum", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  /* 배경: 부드러운 그라데이션 */
+  background: radial-gradient(circle at top left, var(--bg-top), var(--bg-bottom));
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* -------------------------------
+   3. 메인 컨테이너(.page)
+   - 전체 카드 같은 큰 박스
+   ------------------------------- */
+.page {
+  width: 100%;
+  max-width: 1200px;  /* 페이지 최대 너비 */
+  height: 90vh;       /* 화면 높이의 90% 정도 차지 */
+  min-height: 600px;
+  /* 안쪽 배경 (어두운 그라데이션) */
+  background: radial-gradient(circle at top left, #4e3320, #24150c 55%, #181010);
+  border-radius: 32px; /* 모서리 둥글기 */
+  overflow: hidden;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr; /* (사용 X, 레이아웃에서 다시 정의) */
+}
+
+/* -------------------------------
+   4. 헤더 영역 (상단 제목, 태그)
+   ------------------------------- */
+header {
+  grid-column: 1 / -1;  /* 상단 전체 폭 사용 */
+  padding: 18px 28px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* 왼쪽 로고·제목 묶음 */
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* "GUNPO DAY TRIP" 작은 영어 문구 */
+.logo-line1 {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* "군포에서 보내는 포근한 하루" 큰 제목 */
+.logo-line2 {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 1.9rem;
+}
+
+/* 코스 정보 한 줄 (부제목) */
+.logo-line3 {
+  font-size: 0.86rem;
+  color: var(--accent-soft);
+}
+
+/* 오른쪽 상단 동그란 태그 (6시 내고향 감성) */
+.tag-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag-pill span.icon {
+  font-size: 1rem;
+}
+
+/* -------------------------------
+   5. 상·하 레이아웃 (.layout)
+   - 왼쪽: 코스 리스트, 오른쪽: 상세 설명/사진
+   ------------------------------- */
+.layout {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.05fr 1.45fr; /* 왼쪽 1, 오른쪽 1.4 비율 */
+  gap: 0;
+  height: calc(100% - 70px); /* 헤더 높이 제외 */
+}
+
+/* -------------------------------
+   6. 왼쪽 패널 (.left-panel)
+   - 시간별 코스 카드 리스트
+   ------------------------------- */
+.left-panel {
+  padding: 18px 22px 22px;
+  background: linear-gradient(180deg, rgba(40, 26, 15, 0.98), rgba(23, 13, 8, 0.98));
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+/* "오늘의 고향 코스" 제목 */
+.panel-title {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+/* 작은 설명 문구 */
+.panel-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* 코스 카드 리스트 영역 (스크롤 가능) */
+.course-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto; /* 코스가 많아지면 세로 스크롤 생김 */
+}
+
+/* 각 코스를 감싸는 카드 */
+.course-card {
+  background: radial-gradient(circle at top left, #3e2a1c, #1c120c);
+  border-radius: 20px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 70px 1fr; /* 왼쪽 시간, 오른쪽 내용 */
+  gap: 12px;
+  box-shadow:
+    0 7px 18px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.2s ease;
+}
+
+/* 카드에 마우스를 올렸을 때 효과 */
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle at top left, #4b3220, #20130c);
+}
+
+/* 카드 왼쪽 시간 박스(배지) */
+.time-badge {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  /* 시간 배지 색상: 바꾸고 싶으면 여기 수정 */
+  background: radial-gradient(circle at 20% 0%, #f9d9a5, #b46132);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #3b2514;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    0 8px 16px rgba(0, 0, 0, 0.65);
+}
+
+/* 시간 아래에 붙는 작은 글씨 (아침, 점심 등) */
+.time-badge span.small {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* 시간 오른쪽 텍스트 묶음 */
+.course-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* 코스 제목 */
+.course-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+/* 위치/설명 */
+.course-place {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* 작은 태그들 (산책, 점심 등) */
+.course-tags {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.72rem;
+}
+
+/* 태그 하나 디자인 */
+.course-tag {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--accent-soft);
+}
+
+/* -------------------------------
+   7. 오른쪽 패널 (.right-panel)
+   - 메인 설명, 사진/영상, 팁 박스
+   ------------------------------- */
+.right-panel {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 오른쪽 큰 제목 */
+.main-heading {
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+/* 오른쪽 설명 문단 */
+.main-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* 사진/영상이 들어갈 큰 프레임 */
+.media-frame {
+  margin-top: 10px;
+  flex: 1;
+  border-radius: 24px;
+  /* 프레임 배경 색: 실제 사진/영상 넣을 거면 크게 신경 안 써도 됨 */
+  background: radial-gradient(circle at top, #fbe2b7, #9a6041);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.32);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 사진/영상 대신 지금은 안내 텍스트만 들어갈 때 스타일 */
+.media-inner-text {
+  text-align: center;
+  color: #3b2414;
+  padding: 16px;
+  max-width: 75%;
+}
+
+.media-inner-text h2 {
+  margin: 0 0 4px;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2.2rem;
+}
+
+.media-inner-text p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* 교통 팁, 추천 시즌 등 들어가는 박스 */
+.tip-box {
+  border-radius: 18px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(248, 212, 158, 0.15), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 팁 박스 안의 강조 텍스트 색 */
+.tip-box strong {
+  color: var(--accent-soft);
+  font-weight: 600;
+}
+
+/* 추천 시기 배지 줄 */
+.season-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 0.77rem;
+}
+
+/* 계절 배지 디자인 */
+.season-pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 174, 78, 0.6);
+  color: var(--accent-soft);
+  background-color: rgba(243, 174, 78, 0.09);
+}
+
+/* -------------------------------
+   8. 푸터(오른쪽 아래 싸인)
+   ------------------------------- */
+footer {
+  position: absolute;
+  bottom: 12px;
+  right: 26px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+/* 본인 닉네임 부분 폰트 */
+footer span.sign {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* -------------------------------
+   9. 반응형 디자인 (화면이 좁을 때)
+   - 최대 너비 900px 이하에서 적용
+   ------------------------------- */
+@media (max-width: 900px) {
+  body {
+    padding: 10px;
+  }
+
+  .page {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr; /* 한 열로 정렬 */
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  /* 왼쪽 패널이 위로 올라가고, 아래 오른쪽 패널이 나오는 구조 */
+  .left-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    max-height: 360px; /* 코스 리스트가 너무 길어지지 않게 */
+  }
+
+  .course-card {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .right-panel {
+    min-height: 360px;
+  }
+
+  footer {
+    position: static;
+    margin: 10px 0 8px;
+    text-align: right;
+  }
+}
