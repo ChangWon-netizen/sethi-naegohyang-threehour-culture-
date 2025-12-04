@@ -45,3 +45,18 @@ body {
 .thumbnail-button:hover {
   transform: scale(1.05);
 }
+
+/* 오디오 플레이어 숨기기 */
+#bg-music {
+  display: none; /* 👉 화면에 보이지 않게 */
+}
+
+.hint {
+  position: absolute;
+  bottom: 2%;   /* 버튼보다 조금 아래 */
+  width: 100%;
+  text-align: center;
+  font-size: 1.3em;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
