@@ -86,3 +86,25 @@ section img {
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* 그림자 효과 */
 }
+
+/* 인트로 섹션 스타일 */
+#intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f); /* 👉 따뜻한 배경 */
+  color: #333;
+}
+
+#intro h2 {
+  font-size: 1.6em;
+  color: #d62828; /* 👉 사투리 문구 강조 색 */
+  margin-bottom: 20px;
+}
+
+#intro p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
