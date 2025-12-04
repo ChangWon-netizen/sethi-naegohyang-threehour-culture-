@@ -73,5 +73,14 @@ section img {
 }
 
 .tag {
-  position:absolute;
+  position: absolute; /* 부모(.comment) 안에서 절대 위치 */
+  top: -10px;
+  left: -10px;
+  background-color: #0077b6; /* 👉 배경색 */
+  color: white; /* 👉 글자색 */
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 50%; /* 원형 배지 */
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* 그림자 효과 */
 }
