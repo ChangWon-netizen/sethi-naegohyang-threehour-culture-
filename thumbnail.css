@@ -1,0 +1,47 @@
+/* 전체 페이지 기본 설정 */
+html {
+  scroll-behavior: smooth; /* 👉 버튼 클릭 시 부드럽게 이동 */
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif; /* 👉 글꼴 변경 가능 */
+}
+
+/* 썸네일 섹션 */
+#thumbnail {
+  height: 100vh;
+  width: 100%;
+  background-image: url('썸네일.png'); /* 👉 썸네일 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* 버튼 그룹: 길 아래쪽에 배치 */
+.button-group {
+  position: absolute;
+  bottom: 10%; /* 👉 세 사람이 걷는 길 아래쪽 위치 */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* 👉 버튼 사이 간격 */
+}
+
+/* 버튼 스타일 */
+.thumbnail-button {
+  background-color: rgba(255, 255, 255, 0.85); /* 👉 반투명 배경 */
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.thumbnail-button:hover {
+  transform: scale(1.05);
+}
