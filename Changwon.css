@@ -1,0 +1,77 @@
+/* 전체 페이지 기본 설정 */
+html {
+  scroll-behavior: smooth; /* 화살표 클릭 시 부드럽게 이동 */
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif; /* 👉 글꼴 변경 가능 */
+  background-color: #f9f9f9; /* 👉 전체 배경색 변경 가능 */
+}
+
+/* 각 섹션 스타일 */
+section {
+  height: 100vh; /* 화면 한 장 크기 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+/* 사진 스타일 */
+section img {
+  max-width: 80%; /* 👉 사진 크기 조절 가능 */
+  border-radius: 15px; /* 👉 사진 모서리 둥글게 */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* 👉 그림자 효과 */
+}
+
+/* 설명 글 스타일 */
+.description {
+  margin-top: 20px;
+  background-color: rgba(255,255,255,0.8); /* 👉 반투명 배경 */
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.description h2 {
+  margin: 0;
+  color: #0077b6; /* 👉 제목 색상 변경 가능 */
+}
+
+.description p {
+  margin: 10px 0 0;
+  color: #333; /* 👉 본문 글 색상 변경 가능 */
+}
+
+/* 댓글 섹션 */
+.comment-section {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.comment {
+  max-width: 45%;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  font-size: 14px;
+}
+
+.local {
+  background-color: #e0f7fa; /* 👉 내 댓글 배경색 */
+  align-self: flex-start;
+}
+
+.visitor {
+  background-color: #fce4ec; /* 👉 외 댓글 배경색 */
+  align-self: flex-end;
+}
+
+.tag {
+  position:absolute;
+}
