@@ -60,7 +60,13 @@ section img {
   border-radius: 10px;
   position: relative;
   font-size: 14px;
+  animation: fadeInUp 0.6s ease; /* 댓글 등장 애니메이션 */
 }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
 .local {
   background-color: #e0f7fa; /* 👉 내 댓글 배경색 */
