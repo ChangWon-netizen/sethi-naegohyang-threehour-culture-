@@ -22,9 +22,9 @@ section {
 
 /* 사진 스타일 */
 section img {
-  max-width: 80%; /* 👉 사진 크기 조절 가능 */
-  border-radius: 15px; /* 👉 사진 모서리 둥글게 */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* 👉 그림자 효과 */
+  width: 50%;
+  max-width: 300px;
+  height: auto;
 }
 
 /* 설명 글 스타일 */
@@ -61,10 +61,6 @@ section img {
   position: relative;
   font-size: 14px;
   animation: fadeInUp 0.6s ease; /* 댓글 등장 애니메이션 */
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 
