@@ -1,0 +1,109 @@
+/* 전체 페이지 기본 설정 */
+html {
+  scroll-behavior: smooth; /* 👉 화살표 클릭 시 부드럽게 이동 (필요 없으면 제거 가능) */
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif; /* 👉 글꼴 변경 가능 */
+  background-color: #f9f9f9; /* 👉 전체 배경색 변경 가능 */
+}
+
+/* 각 섹션 스타일 */
+section {
+  height: 100vh; /* 👉 화면 한 장 크기 (원하는 높이로 변경 가능) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px; /* 👉 섹션 안쪽 여백 조정 가능 */
+}
+
+/* 사진 스타일 */
+section img {
+  width: 50%; /* 👉 사진 크기 비율 변경 가능 */
+  max-width: 300px; /* 👉 사진 최대 크기 변경 가능 */
+  height: auto;
+}
+
+/* 설명 글 스타일 */
+.description {
+  margin-top: 20px;
+  background-color: rgba(255,255,255,0.8); /* 👉 설명 박스 배경색 변경 가능 */
+  padding: 15px; /* 👉 설명 박스 안쪽 여백 변경 가능 */
+  border-radius: 10px; /* 👉 모서리 둥글기 변경 가능 */
+  text-align: center; /* 👉 글 정렬 변경 가능 */
+}
+
+.description h2 {
+  margin: 0;
+  color: #0077b6; /* 👉 제목 색상 변경 가능 */
+}
+
+.description p {
+  margin: 10px 0 0;
+  color: #333; /* 👉 본문 글 색상 변경 가능 */
+}
+
+/* 댓글 섹션 */
+.comment-section {
+  display: flex;
+  justify-content: space-between;
+  width: 80%; /* 👉 댓글 박스 전체 너비 변경 가능 */
+  margin-top: 20px;
+}
+
+.comment {
+  max-width: 45%; /* 👉 댓글 박스 너비 변경 가능 */
+  padding: 10px;
+  border-radius: 10px; /* 👉 댓글 박스 모서리 둥글기 변경 가능 */
+  position: relative;
+  font-size: 14px; /* 👉 댓글 글자 크기 변경 가능 */
+  animation: fadeInUp 0.6s ease; /* 👉 댓글 등장 애니메이션 변경 가능 */
+}
+
+.local {
+  background-color: #e0f7fa; /* 👉 현지인 댓글 배경색 변경 가능 */
+  align-self: flex-start;
+}
+
+.visitor {
+  background-color: #fce4ec; /* 👉 여행자 댓글 배경색 변경 가능 */
+  align-self: flex-end;
+}
+
+.tag {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #0077b6; /* 👉 태그 배경색 변경 가능 */
+  color: white; /* 👉 태그 글자색 변경 가능 */
+  font-size: 12px; /* 👉 태그 글자 크기 변경 가능 */
+  padding: 4px 8px;
+  border-radius: 50%; /* 👉 태그 모양 변경 가능 (원형/사각형 등) */
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* 👉 태그 그림자 효과 변경 가능 */
+}
+
+/* 인트로 섹션 스타일 */
+#intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f); /* 👉 인트로 배경색/그라데이션 변경 가능 */
+  color: #333; /* 👉 인트로 글자색 변경 가능 */
+}
+
+#intro h2 {
+  font-size: 1.6em; /* 👉 인트로 제목 크기 변경 가능 */
+  color: #d62828; /* 👉 사투리 문구 강조 색 변경 가능 */
+  margin-bottom: 20px;
+}
+
+#intro p {
+  font-size: 1.1em; /* 👉 인트로 본문 글자 크기 변경 가능 */
+  line-height: 1.6; /* 👉 줄 간격 변경 가능 */
+}
