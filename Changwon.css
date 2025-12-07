@@ -22,9 +22,9 @@ section {
 
 /* 사진 스타일 */
 section img {
-  width: 50%;
-  max-width: 300px;
-  height: auto;
+  width: auto;
+  max-height: 320px;
+  height: 50%;
 }
 
 /* 설명 글 스타일 */
