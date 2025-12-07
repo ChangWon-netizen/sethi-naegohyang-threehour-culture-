@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>셋이 내고향</title>
+  <link rel="stylesheet" href="thumbnail.css"> <!-- 👉 CSS 파일 연결 -->
+</head>
+<body>
+
+  <!-- 썸네일 첫 화면 -->
+  <section id="thumbnail">
+    <div class="button-group">
+      <a href="Changwon.html" class="thumbnail-button">🌾 소영의 <strong>창원</strong></a>
+      <a href="Sacheon.html" class="thumbnail-button">🌿 서윤의 <strong>사천</strong></a>
+      <a href="Gunpo.html" class="thumbnail-button">🍁 민서의 <strong>군포</strong></a>
+    </div>
+    <!-- 안내 문구 추가 -->
+    <p class="hint">👆 페이지 상단의 <strong>'셋이 내고향'</strong>을 먼저 클릭해주세요</p>
+
+    <!-- 배경 음악 -->
+    <audio id="bg-music" autoplay loop muted>
+      <source src="travel.mp3" type="audio/mpeg">
+      브라우저가 오디오 태그를 지원하지 않습니다.
+    </audio>
+  </section>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("bg-music");
+      // 자동재생 시도
+      audio.play().catch(() => {
+        // 정책 때문에 막히면, 첫 클릭 시 소리 켜기
+        window.addEventListener("click", () => {
+          audio.muted = false;
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>
